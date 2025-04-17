@@ -10,9 +10,7 @@ A JavaFX-based supermarket management system developed using **FXML (Scene Build
 - User registration and login
 - Product browsing by category
 - Add to cart, remove from cart
-- Wishlist management
 - Order checkout and tracking
-- Submit product reviews
 - Rate delivery experience
 
 ### 🔐 Admin Features
@@ -24,7 +22,6 @@ A JavaFX-based supermarket management system developed using **FXML (Scene Build
 ### 🚚 Delivery Boy Features
 - View assigned deliveries
 - Mark orders as delivered
-- Report failed attempts
 - Get rated by customers
 
 ---
