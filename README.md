@@ -40,11 +40,6 @@ A JavaFX-based supermarket management system developed using **FXML (Scene Build
 
 ---
 
-## 💻 Screenshots
-
-> *(Add screenshots of key screens here if you'd like: login page, product catalog, admin dashboard, etc.)*
-
----
 
 ## 🗃️ Database Schema
 
@@ -58,7 +53,6 @@ A JavaFX-based supermarket management system developed using **FXML (Scene Build
   - `DeliveryBoy`
   - `Reviews`
 
-> *(You can upload your SQL dump or ERD diagram in the repo for setup reference.)*
 
 ---
 
