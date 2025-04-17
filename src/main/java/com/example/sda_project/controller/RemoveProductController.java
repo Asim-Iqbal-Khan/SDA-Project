@@ -43,34 +43,31 @@ public class RemoveProductController {
 
     @FXML
     public void initialize() {
-        // Initialize the table columns
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         priceColumn.setCellValueFactory(new PropertyValueFactory<>("price"));
         descriptionColumn.setCellValueFactory(new PropertyValueFactory<>("description"));
         imageUrlColumn.setCellValueFactory(new PropertyValueFactory<>("imageUrl"));
 
-        // Load data into the table
         loadProducts();
     }
 
     private void loadProducts() {
         products.clear();
-        try (Connection connection = DBUtil.getConnection()) {
-            String query = "SELECT product_name, retail_price, description, image FROM Products";
-            PreparedStatement statement = connection.prepareStatement(query);
-            ResultSet resultSet = statement.executeQuery();
+        String query = "SELECT product_id, product_name, discounted_price, description, image, quantity FROM Products";
+        try (Connection conn = DBUtil.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+            ResultSet resultSet = stmt.executeQuery();
 
             while (resultSet.next()) {
                 int product_id = resultSet.getInt("product_id");
                 String name = resultSet.getString("product_name");
-                double price = resultSet.getDouble("retail_price");
+                double price = resultSet.getDouble("discounted_price");
                 String description = resultSet.getString("description");
                 String imageUrl = resultSet.getString("image");
                 int  capacity = resultSet.getInt("quantity");
 
                 products.add(new Product(product_id, name, price, description, imageUrl, capacity));
             }
-
             productTable.setItems(products);
         } catch (SQLException e) {
             e.printStackTrace();

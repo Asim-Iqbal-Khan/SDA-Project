@@ -11,6 +11,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="645.0" prefWidth="1536.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sda_project.controller.AdminController">
     <children>
+
         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="TOMATO" height="218.0" layoutX="-7.0" layoutY="-7.0" stroke="#891a1a" strokeType="INSIDE" width="1543.0" AnchorPane.bottomAnchor="427.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-7.0" AnchorPane.topAnchor="0.0">
             <effect>
                 <Shadow height="0.0" radius="11.7675" width="49.07">
@@ -18,7 +19,9 @@
                         <Color red="1.0" green="0.38823530077934265" blue="0.27843138575553894" />
                     </color>
                 </Shadow>
-            </effect></Rectangle>
+            </effect>
+        </Rectangle>
+        <Button onAction="#backToLogin" layoutX="20" layoutY="20" text="Logout" style="-fx-background-color: #FF6347; -fx-text-fill: white; -fx-font-size: 14px; -fx-border-color: #FF4500; -fx-border-radius: 5px; -fx-background-radius: 5px;"/>
         <Button layoutX="264.0" layoutY="289.0" mnemonicParsing="false" onAction="#openAddCategoryWindow" prefHeight="121.0" prefWidth="198.0" style="-fx-background-color: #ffb0b0;" text="Add Category" textFill="#893e3e">
             <font>
                 <Font name="System Bold" size="12.0" />

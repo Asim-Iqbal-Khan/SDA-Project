@@ -25,17 +25,17 @@ public class AdminController {
         System.out.println("User selected");
     }
 
-    @FXML
-    public void report(ActionEvent e) {
-        System.out.println("Report selected");
-    }
+//    @FXML
+//    public void report(ActionEvent e) {
+//        System.out.println("Report selected");
+//    }
 
     @FXML
     public void backToLogin(ActionEvent e) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("/com/example/sda_project/login.fxml"));
-            Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds(); // Get screen dimensions
-            Scene scene = new Scene(fxmlLoader.load(), screenBounds.getWidth(), screenBounds.getHeight());
+
+            Scene scene = new Scene(fxmlLoader.load(), 600, 500);
 
 
             Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();

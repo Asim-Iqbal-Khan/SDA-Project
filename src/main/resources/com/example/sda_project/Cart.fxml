@@ -18,6 +18,7 @@
             <HBox spacing="20.0" styleClass="navbar">
                 <Button styleClass="btn" text="Home" onAction="#goToHome" />
                 <Button styleClass="btn" text="About" onAction="#goToAbout" />
+                <Button styleClass="btn" text="Browse" onAction="#goToBrowse" />
                 <Button styleClass="btn" text="Cart" />
                 <Button styleClass="btn" text="WishList" onAction="#goToWishList" />
                 <Button styleClass="btn" text="Order Reviews" onAction="#goToOrderReviews" />

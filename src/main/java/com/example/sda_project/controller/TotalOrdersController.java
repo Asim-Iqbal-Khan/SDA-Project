@@ -64,6 +64,30 @@ public class TotalOrdersController {
     }
 
     @FXML
+    private void handleLogOut(ActionEvent e){
+        try{
+            FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("login.fxml"));
+            Scene scene = new Scene(fxmlLoader.load(), 600, 500);
+
+//            URL cssFile = HelloApplication.class.getResource("style.css");
+//            if (cssFile != null) {
+//                scene.getStylesheets().add(cssFile.toExternalForm());
+//            } else {
+//                System.out.println("Warning: 'DeliveryBoy.css' not found.");
+//            }
+
+            Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
+            stage.setTitle("Login");
+            stage.setScene(scene);
+            stage.show();
+        }
+        catch (IOException ex){
+            ex.printStackTrace();
+            System.out.println("Error loading the Reviews page: " + ex.getMessage());
+        }
+    }
+
+    @FXML
     private void goToReviews(ActionEvent e){
         try{
             FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Reviews.fxml"));

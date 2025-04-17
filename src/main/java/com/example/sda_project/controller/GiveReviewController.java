@@ -135,6 +135,31 @@ public class GiveReviewController {
     }
 
     @FXML
+    protected void goToBrowse(ActionEvent e){
+        try{
+            FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Browse.fxml"));
+            Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
+            Scene scene = new Scene(fxmlLoader.load(), screenBounds.getWidth(), screenBounds.getHeight());
+
+            URL cssFile = HelloApplication.class.getResource("style.css");
+            if (cssFile != null) {
+                scene.getStylesheets().add(cssFile.toExternalForm());
+            } else {
+                System.out.println("Warning: 'style.css' not found.");
+            }
+
+            Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
+            stage.setTitle("Browse");
+            stage.setScene(scene);
+            stage.setMaximized(true);
+            stage.show();
+        }
+        catch (IOException ex){
+            showError(ex.getMessage());
+        }
+    }
+
+    @FXML
     private void goToOrderReviews(ActionEvent e){
         try{
             FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("OrderReviews.fxml"));

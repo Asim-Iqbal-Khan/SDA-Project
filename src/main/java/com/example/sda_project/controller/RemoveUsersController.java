@@ -101,16 +101,15 @@ public class RemoveUsersController {
         deliveryBoys.clear();
         try (Connection connection = DBUtil.getConnection()) {
             // Query without Available
-            String query = "SELECT DeliveryBoy_ID, username, Address FROM DeliveryBoy";
+            String query = "SELECT id, username, Address FROM DeliveryBoy";
             PreparedStatement statement = connection.prepareStatement(query);
             ResultSet resultSet = statement.executeQuery();
 
             while (resultSet.next()) {
                 DeliveryBoy deliveryBoy = new DeliveryBoy();
-                deliveryBoy.setID(resultSet.getInt("DeliveryBoy_ID"));
+                deliveryBoy.setID(resultSet.getInt("id"));
                 deliveryBoy.setUsername(resultSet.getString("username"));
                 deliveryBoy.setAddress(resultSet.getString("Address"));
-                // Do not set availability if it doesn't exist in the schema
 
                 deliveryBoys.add(deliveryBoy);
             }
@@ -158,7 +157,7 @@ public class RemoveUsersController {
         }
 
         try (Connection connection = DBUtil.getConnection()) {
-            String deleteQuery = "DELETE FROM DeliveryBoy WHERE DeliveryBoy_ID = ?";
+            String deleteQuery = "DELETE FROM DeliveryBoy WHERE id = ?";
             PreparedStatement statement = connection.prepareStatement(deleteQuery);
             statement.setInt(1, selectedDeliveryBoy.getID());
             int rowsDeleted = statement.executeUpdate();

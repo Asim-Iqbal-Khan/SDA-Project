@@ -18,6 +18,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.Date;
 
 public class ViewSalesReportController {
 
@@ -65,7 +66,7 @@ public class ViewSalesReportController {
         orders.clear();
         try (Connection connection = DBUtil.getConnection()) {
             String query = "SELECT order_id, customer_id, order_date, DeliveryBoy_id, status " +
-                    "FROM Orders WHERE DATE(order_date) = ?";
+                    "FROM Orders WHERE CONVERT(date, order_date) = ?";
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setDate(1, java.sql.Date.valueOf(date));
             ResultSet resultSet = statement.executeQuery();
@@ -74,7 +75,7 @@ public class ViewSalesReportController {
                 Orders order = new Orders();
                 order.setOrder_id(resultSet.getInt("order_id"));
                 order.setCustomer_id(resultSet.getInt("customer_id"));
-                order.setOrder_date(resultSet.getTimestamp("order_date"));
+                order.setOrder_date(resultSet.getDate("order_date"));
                 order.setDeliveryBoy_id(resultSet.getInt("DeliveryBoy_id"));
                 order.setStatus(resultSet.getString("status"));
 

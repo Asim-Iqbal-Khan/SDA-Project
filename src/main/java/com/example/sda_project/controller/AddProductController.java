@@ -19,6 +19,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class AddProductController {
+    @FXML private TextField productIDField;
     @FXML private TextField productNameField;
     @FXML private TextField categoryTreeField;
     @FXML private TextField retailPriceField;
@@ -56,6 +57,7 @@ public class AddProductController {
     }
     @FXML
     public void addProduct() {
+        int productID = Integer.parseInt(productIDField.getText().trim());
         String productName = productNameField.getText().trim();
         String categoryTree = categoryTreeField.getText().trim();
         String retailPrice = retailPriceField.getText().trim();
@@ -72,20 +74,21 @@ public class AddProductController {
         }
 
         try (Connection connection = DBUtil.getConnection()) {
-            String insertQuery = "INSERT INTO Products (product_name, category_name, retail_price, discounted_price, image, description, product_rating, overall_rating, brand, category_id) " +
-                    "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            String insertQuery = "INSERT INTO Products (product_name, category_name, retail_price, discounted_price, image, description, product_rating, overall_rating, brand, category_id, product_id) " +
+                    "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement statement = connection.prepareStatement(insertQuery);
 
             statement.setString(1, productName);
             statement.setString(2, categoryTree);
             statement.setString(3, retailPrice);
-            statement.setString(4, discountedPrice);
+            statement.setDouble(4, Double.parseDouble(discountedPrice));
             statement.setString(5, image);
             statement.setString(6, description);
             statement.setString(7, productRating);
-            statement.setString(8, overallRating);
+            statement.setInt(8, Integer.parseInt(overallRating));
             statement.setString(9, brand);
             statement.setInt(10, selectedCategory.getId());
+            statement.setInt(11, productID);
 
             int rowsInserted = statement.executeUpdate();
 
@@ -101,6 +104,7 @@ public class AddProductController {
         }
     }
     private void clearFields() {
+        productIDField.clear();
         productNameField.clear();
         categoryTreeField.clear();
         retailPriceField.clear();

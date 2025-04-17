@@ -1,6 +1,7 @@
 package com.example.sda_project.controller;
 
 import com.example.sda_project.HelloApplication;
+import com.example.sda_project.util.DBUtil;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,11 +12,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
+import java.sql.*;
 import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 
 public class AddCategoryController {
 
@@ -35,9 +33,10 @@ public class AddCategoryController {
             return;
         }
 
-        try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/newSupermarket", "root", "1234")) {
-            String checkQuery = "SELECT COUNT(*) FROM Categories WHERE category_name = ?";
-            PreparedStatement checkStatement = connection.prepareStatement(checkQuery);
+        String query = "SELECT COUNT(*) FROM Categories WHERE category_name = ?";
+        try (Connection conn = DBUtil.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+            PreparedStatement checkStatement = conn.prepareStatement(query);
             checkStatement.setString(1, categoryName);
             ResultSet resultSet = checkStatement.executeQuery();
 
@@ -47,7 +46,7 @@ public class AddCategoryController {
                 return;
             }
             String insertQuery = "INSERT INTO Categories (category_name) VALUES (?)";
-            PreparedStatement insertStatement = connection.prepareStatement(insertQuery);
+            PreparedStatement insertStatement = conn.prepareStatement(insertQuery);
             insertStatement.setString(1, categoryName);
             int rowsInserted = insertStatement.executeUpdate();
 
